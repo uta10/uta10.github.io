@@ -7,10 +7,38 @@ Colorblind safe color palette from colorbrewer2.org.
 #2c7bb6 - Blue
 */
 body {
-background-color: #ffffbf;
-color: #abd9e9;
-text-align: center;
+  background-color: #ffffbf;
+  color: #abd9e9;
+  text-align: center;
+  margin: 0;
 }
 h1 {
-color: #2c7bb6;
+  color: #2c7bb6;
+  padding: 5px;
+  margin: 0;
+}
+#body-container {
+  background-color: #f7f7f7;
+  max-width: 1000px;
+  margin: auto;
+  min-height: 100vh;
+  border: 2px solid #f7f7f7;
+  border-radius: 25px;
+  overflow: hidden;
+}
+#header {
+  background-color: #ece7f2;
+}
+#profile-picture {
+  float: left;
+}
+#welcome-text {
+  padding-top: 25px;
+  font-size: 25px;
+}
+#Hobbies {
+  text-align: left;
+  font-size: 25px;
+  position: relative;
+  left: 50px;
 }
