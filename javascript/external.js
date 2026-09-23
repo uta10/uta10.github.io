@@ -1,8 +1,8 @@
 var webmaps =
 [
-  ["Duke Energy Outage Map", "https://outagemap.duke-energy.com/#/current-outages/fl",
+  ["Duke Energy Outage Map", "https://outagemap.duke-energy.com",
   "Duke Energy's outage map helps customers in Florida, Ohio, Kentucky, Indiana, and the Carolinas locate power outages and view information such as the cause, number of people affected, outage time, status, and estimated restoration time. The map uses GIS functionalities including spatial visualization, spatial analysis, and attribute information to provide details about outages within Duke Energy's service areas."],
-  ["OpenStreetMap", "https://www.openstreetmap.org/#map=4/38.01/-95.84",
+  ["OpenStreetMap", "https://www.openstreetmap.org",
 "The primary purpose of OpenStreetMap was to create a free, editable map of the world. It was started in the UK out of frustration with the lack of good map data that was freely available to use. OpenStreetMap has many strengths, including being open-source, collaborative, and having low barriers to contributing information."]
 ];
 //A prompt box is used to prompt users to input a value before entering a page.
@@ -25,7 +25,25 @@ function welcome()
       document.write("<tr>");
       for (var column=0; column < webmaps[0].length; column++)
       {
-        document.write("<td>" + webmaps[row][column] + "</td>");
+        if (column == 0)
+        {
+          document.write("<td>" + webmaps[row][column] + "</td>");
+        } else if (column == 1)
+        {
+          document.write(
+            '<td><a href="' + webmaps[row][column] + '">' +
+            webmaps[row][column] +
+            '</a></td>'
+          );
+        } else if (column == 2)
+        {
+            document.write(
+              '</tr><tr><td colspan="2">' +
+              webmaps[row][column] +
+              '</td>'
+            );
+        }
+        //document.write("<td>" + webmaps[row][column] + "</td>");
       }
       document.write("</tr>");
     }
