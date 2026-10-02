@@ -13,10 +13,8 @@
   </script>
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css">
 <script src="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js"></script>
-<script src="https://unpkg.com/leaflet-control-
-geocoder/dist/Control.Geocoder.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet-control-
-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
   <script
   src="javascript/secret_keys.js">
 </script>
@@ -66,28 +64,225 @@ src="./javascript/external.js">
         </p>
       </div>
       <div id="webmap-reviews">
-<h3>Geocoding Map</h3>
-<br>
-<div id="mapid" style="width: 600px; height: 400px; margin: auto; bottom: 30px;">
-<script>
-var mymap = L.map('mapid');
+        <h3>Seven Wonders of the World</h3>
+        <br>
 
+        <div id="mapid" style="width: 600px; height: 400px; margin: auto; bottom: 30px;"></div>
 
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {maxZoom: 18, id: 'mapbox/dark-v10', accessToken: mapbox_access_token}).addTo(mymap);
-var geocoder = L.Control.geocoder({
-defaultMarkGeocode: false,
-geocoder: new L.Control.Geocoder.Nominatim()
-}).on('markgeocode', function(e) {
-var bbox = e.geocode.bbox;
-var poly = L.polygon([
-bbox.getSouthEast(),
-bbox.getNorthEast(),
-bbox.getNorthWest(),
-bbox.getSouthWest()
-]);
-mymap.fitBounds(poly.getBounds());
+        <script>
+        var mymap = L.map('mapid');
+// Tile Layer
+        L.tileLayer('https://api.maptiler.com/maps/streets-v4/{z}/{x}/{y}.png?key=' + maptiler_api_key, {
+            maxZoom: 20,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; MapTiler'
+        }).addTo(mymap);
+// Taj Mahal
+var tajMahalIcon = L.divIcon({
+    className: 'wonder-marker',
+    html: '🕌',
+    iconSize: [35, 35],
+    iconAnchor: [17, 17]
+});
+var tajMahal = L.marker([27.174961, 78.042385], {
+    icon: tajMahalIcon
 }).addTo(mymap);
-// var marker = L.marker([51.5, -0.09]).addTo(mymap);
+tajMahal.bindPopup(`
+    <div>
+        <img src="images/taj-mahal.jpg" class="wonder-image">
+
+        <strong>Taj Mahal, India</strong>
+
+        <p>
+        The Taj Mahal is a famous white marble mausoleum located in Agra, India.
+        It was built in the 1600s by Mughal emperor Shah Jahan as a memorial to his wife, Mumtaz Mahal.
+        The building is known for its detailed architecture, large dome, gardens, and beautiful marble decorations.
+        </p>
+    </div>
+`, {
+    className: 'wonder-popup'
+});
+// Great Wall
+var greatWallIcon = L.divIcon({
+    className: 'wonder-marker',
+    html: '🧱',
+    iconSize: [35, 35],
+    iconAnchor: [17, 17]
+});
+var greatWall = L.marker([40.334245, 116.477652], {
+    icon: greatWallIcon
+}).addTo(mymap);
+greatWall.bindPopup(`
+    <div>
+        <img src="images/great-wall.jpg" class="wonder-image">
+
+        <strong>Great Wall of China</strong>
+
+        <p>
+        The Great Wall of China is a huge network of walls and fortifications built across northern China.
+        Construction took place over many centuries, with different sections built and expanded by different Chinese dynasties.
+        The wall was primarily used to protect territories and control movement along China's northern borders.
+        </p>
+    </div>
+`, {
+    className: 'wonder-popup'
+});
+// Petra
+var petraIcon = L.divIcon({
+    className: 'wonder-marker',
+    html: '🏛️',
+    iconSize: [35, 35],
+    iconAnchor: [17, 17]
+});
+var petra = L.marker([30.328611, 35.441944], {
+    icon: petraIcon
+}).addTo(mymap);
+petra.bindPopup(`
+    <div>
+        <img src="images/petra.jpg" class="wonder-image">
+
+        <strong>Petra, Jordan</strong>
+
+        <p>
+        Petra is an ancient city located in southern Jordan that is famous for buildings and monuments carved directly into colorful sandstone cliffs.
+        The city was an important trading center and was developed by the Nabataean people.
+        One of its most recognizable structures is the Treasury, which is carved into the rock and features extremely detailed architectural designs.
+        </p>
+    </div>
+`, {
+    className: 'wonder-popup'
+});
+// Christ Redeemer
+var christIcon = L.divIcon({
+    className: 'wonder-marker',
+    html: '✝️',
+    iconSize: [35, 35],
+    iconAnchor: [17, 17]
+});
+var christ = L.marker([-22.951389, -43.2108334], {
+    icon: christIcon
+}).addTo(mymap);
+christ.bindPopup(`
+    <div>
+        <img src="images/christ-redeemer.jpg" class="wonder-image">
+
+        <strong>Christ the Redeemer, Brazil</strong>
+
+        <p>
+        Christ the Redeemer is a large statue of Jesus Christ located on Mount Corcovado overlooking Rio de Janeiro, Brazil.
+        The statue was completed in 1931 and stands with its arms extended over the city.
+        It has become one of Brazil's most recognizable landmarks and provides views of Rio de Janeiro and the surrounding landscape.
+        </p>
+    </div>
+`, {
+    className: 'wonder-popup'
+});
+
+// Machu Picchu
+var machuPicchuIcon = L.divIcon({
+    className: 'wonder-marker',
+    html: '⛰️',
+    iconSize: [35, 35],
+    iconAnchor: [17, 17]
+});
+var machuPicchu = L.marker([-13.163056, -72.545556], {
+    icon: machuPicchuIcon
+}).addTo(mymap);
+machuPicchu.bindPopup(`
+    <div>
+        <img src="images/machu-picchu.jpg" class="wonder-image">
+
+        <strong>Machu Picchu, Peru</strong>
+
+        <p>
+        Machu Picchu is an ancient Inca settlement located high in the Andes Mountains of Peru.
+        The site contains stone buildings, terraces, plazas, and other structures surrounded by steep mountains.
+        It is believed to have been constructed during the 15th century and is one of the best-known examples of Inca architecture and engineering.
+        </p>
+    </div>
+`, {
+    className: 'wonder-popup'
+    });
+// Chichen Itza
+var chichenIcon = L.divIcon({
+    className: 'wonder-marker',
+    html: '🔺',
+    iconSize: [35, 35],
+    iconAnchor: [17, 17]
+});
+var chichen = L.marker([20.682778, -88.569167], {
+    icon: chichenIcon
+}).addTo(mymap);
+chichen.bindPopup(`
+    <div>
+        <img src="images/chichen-itza.jpg" class="wonder-image">
+
+        <strong>Chichen Itza, Mexico</strong>
+
+        <p>
+        Chichén Itzá is an ancient Mayan city located on Mexico's Yucatán Peninsula.
+        The site contains several important structures, including the large pyramid known as El Castillo, which was dedicated to the Mayan deity Kukulkan.
+        Chichén Itzá was an important political, religious, and economic center and provides important insight into Mayan civilization.
+        </p>
+    </div>
+`, {
+    className: 'wonder-popup'
+});
+// Colosseum
+var colosseumIcon = L.divIcon({
+    className: 'wonder-marker',
+    html: '🏟️',
+    iconSize: [35, 35],
+    iconAnchor: [17, 17]
+});
+var colosseum = L.marker([41.890169, 12.492269], {
+    icon: colosseumIcon
+}).addTo(mymap);
+colosseum.bindPopup(`
+    <div>
+        <img src="images/colosseum.jpg" class="wonder-image">
+
+        <strong>The Colosseum, Rome</strong>
+
+        <p>
+        The Colosseum is an ancient Roman amphitheater located in the center of Rome, Italy.
+        Construction began during the first century of CE, and the arena was used for gladiator contests, public spectacles, and other large events.
+        Today, it is one of the most recognizable surviving structures from the Roman Empire and an important historical landmark.
+        </p>
+    </div>
+`, {
+    className: 'wonder-popup'
+});
+// Zoom
+var wonders = L.featureGroup([
+    tajMahal,
+    greatWall,
+    petra,
+    christ,
+    machuPicchu,
+    chichen,
+    colosseum
+]);
+mymap.fitBounds(wonders.getBounds(), {
+    padding: [30, 30]
+});
+// Geocoder
+
+    var geocoder = L.Control.geocoder({
+        defaultMarkGeocode: false,
+        geocoder: new L.Control.Geocoder.Nominatim()
+    }).on('markgeocode', function(e) {
+        var bbox = e.geocode.bbox;
+        var poly = L.polygon([
+            bbox.getSouthEast(),
+            bbox.getNorthEast(),
+            bbox.getNorthWest(),
+            bbox.getSouthWest()
+        ]);
+        mymap.fitBounds(poly.getBounds());
+    }).addTo(mymap);
+</script>
+        </div>
+<!-- // var marker = L.marker([51.5, -0.09]).addTo(mymap);
 // var circle = L.circle([51.508, -0.11], { color: 'red', fillColor: '#f03',
 // fillOpacity: 0.5, radius: 500}).addTo(mymap);
 // var polygon = L.polygon([[51.509, -0.08], [51.503, -0.06], [51.51, -
@@ -111,10 +306,7 @@ mymap.fitBounds(poly.getBounds());
 // return gauge;
 // }
 // });
-// (new ZoomViewer).addTo(mymap);
-mymap.setView([0,0], 1);
-</script>
-</div>
+// (new ZoomViewer).addTo(mymap); -->
         <p>
 <h3>Webmap Reviews</h3>
 <script>

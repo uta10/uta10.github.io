@@ -3,3 +3,36 @@
 {
 background: yellow;
 }
+/* Custom popup for the Seven Wonders */
+.wonder-popup .leaflet-popup-content-wrapper {
+    background: white;
+    border-radius: 10px;
+}
+
+.wonder-popup .leaflet-popup-content {
+    width: 250px !important;
+    margin: 15px;
+    font-family: Arial, sans-serif;
+    line-height: 1.4;
+}
+
+.wonder-popup .leaflet-popup-tip {
+    background: white;
+}
+
+/* Popup image */
+.wonder-image {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+/* Custom marker */
+.wonder-marker {
+    background: transparent;
+    border: none;
+    text-align: center;
+    font-size: 30px;
+}
